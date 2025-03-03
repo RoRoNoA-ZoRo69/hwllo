@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            gap: 50px;
+        }
+
+        .qr-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .qr-placeholder {
+            width: 250px;
+            height: 250px;
+            background-color: #f0f2f5;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+
+        .instructions {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: #3b4a54;
+        }
+
+        p {
+            color: #667781;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        ol {
+            list-style-type: none;
+            counter-reset: step-counter;
+            margin-bottom: 32px;
+        }
+
+        ol li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            color: #667781;
+            line-height: 1.5;
+        }
+
+        ol li::before {
+            content: counter(step-counter) ".";
+            color: #00a884;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .help-link {
+            color: #00a884;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 32px;
+        }
+
+        .phone-login {
+            background: none;
+            border: 1px solid #00a884;
+            color: #00a884;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .phone-login:hover {
+            background-color: #f5f6f6;
+        }
+
+        .checkbox-container {
+            margin: 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667781;
+        }
+
+        .footer {
+            text-align: center;
+            color: #667781;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 24px;
+            }
+            
+            .qr-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="qr-container">
+            <div class="qr-placeholder"></div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="stay-logged-in">
+                <label for="stay-logged-in">Stay logged in on this browser</label>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h1>Log into WhatsApp Web</h1>
+            <p>Message privately with friends and family using WhatsApp on your browser.</p>
+            
+            <ol>
+                <li>Open WhatsApp on your phone</li>
+                <li>Tap Menu  on Android, or Settings  on iPhone</li>
+                <li>Tap Linked devices and then Link a device</li>
+                <li>Point your phone at this screen to scan the QR code</li>
+            </ol>
+
+            <a href="#" class="help-link">Need help getting started?</a>
+            <button class="phone-login">Log in with phone number</button>
+            
+            <div class="footer">
+                <p>Your personal messages are end-to-end encrypted</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple QR code expiration simulation
+        setTimeout(() => {
+            const qrPlaceholder = document.querySelector('.qr-placeholder');
+            qrPlaceholder.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #667781;">
+                    <p>QR code expired</p>
+                    <button onclick="location.reload()" 
+                            style="margin-top: 10px;
+                                   padding: 8px 16px;
+                                   background: #00a884;
+                                   color: white;
+                                   border: none;
+                                   border-radius: 4px;
+                                   cursor: pointer;">
+                        Refresh QR Code
+                    </button>
+                </div>
+            `;
+        }, 20000); // 20 seconds
+    </script>
+</body>
+</html>
